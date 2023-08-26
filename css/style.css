@@ -11,9 +11,39 @@ html {
 body {
     padding: 0;
     margin: 0;
+    display:grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 100%;
+    grid-template-areas: 
+    'header'
+    ;
+}
+.sidebar-container {
+    grid-area: header;
+    z-index: 600;
+    position: absolute;
+    left: -300px;
+    transition: 0.5s ease;
+}
+
+.sidebar {
+    z-index: inherit;
+    width: 300px;
+    height: 100vh;
+    background-color: white;
+}
+
+#sidebar-background {
+    background-color: transparent;
+    height: 100vh;
+    width: 100vw;
+    z-index: 400;
+    display: none;
+    grid-area: header;
 }
 
 header {
+    grid-area: header;
     height: 56px;
     padding: 0 16px;
     display: flex;
@@ -182,4 +212,19 @@ header {
         margin-left: 10px;
         font-size: 36px;
     }
+    
 }
+
+
+/* 
+
+.sidebar {
+    grid-area: header;
+    z-index: 600;
+    position: absolute;
+    left: 0px;
+    transition: 0.5s ease;
+}
+
+    
+*/
