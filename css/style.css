@@ -16,21 +16,18 @@ body {
     overflow-x: hidden !important;
     padding: 0;
     margin: 0;
-    display: grid;
-    grid-template-columns: 100vw;
-    grid-template-rows: 100%;
-    grid-template-areas:
-        'header'
-    ;
     font-family: "Roboto","Arial",sans-serif;
 }
 
 .sidebar-container {
-    grid-area: header;
-    z-index: 600;
     position: fixed;
-    left: -260px;
-    transition: 0.3s ease;
+    display: grid;
+    z-index: -1;
+    grid-template-columns: 100vw;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    'header'
+    ;
 }
 
 .sidebar, .sidebar-main {
@@ -43,6 +40,11 @@ body {
 }
 .sidebar {
     padding-top: 16px;
+    grid-area: header;
+    position: fixed;
+    z-index: 500;
+    transition: 0.5s ease;
+    left: -400px;
 }
 .sidebar-box div {
     width: 216px;
@@ -119,13 +121,16 @@ body {
 
 
 #sidebar-background {
-    background-color: transparent;
+    background-color: white;
     height: 100vh;
     width: 100vw;
-    z-index: 400;
-    display: none;
+    position: relative;
+    z-index: 0;
     grid-area: header;
+    transition:200ms ease;
 }
+
+/*? HEADER */
 
 header {
     grid-area: header;
@@ -297,6 +302,40 @@ header {
     cursor: pointer;
     border-radius: 100%;
 }
+
+/*? MAIN */
+
+main {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: 1400px 520px;
+    grid-template-rows: 750px 750px;
+    grid-template-areas: 
+    'video recomendado' 
+    'descripcion-comentarios recomendado';
+}
+#video {
+    grid-area: video;
+}
+#recomendado {
+    grid-area: recomendado;
+}
+#descripcion-comentarios {
+    grid-area: descripcion-comentarios;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 680px) {
     .mid_header {
