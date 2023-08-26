@@ -5,8 +5,10 @@
 html {
     padding: 0;
     margin: 0;
+    overflow-x: hidden !important;
 }
-body{
+
+body {
     padding: 0;
     margin: 0;
 }
@@ -21,75 +23,72 @@ header {
     font-size: 35px;
     font-weight: 200;
 }
-
+.mobile {
+    display: none;
+}
 .left_header {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.mid_header {
+.mid_header-desktop {
     flex: 0 1 700px;
     min-width: 0;
-    display: flexbox;
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-left: 130px;
 }
 
-.search {
-    position: relative;
+.rigth_header-desktop {
+    margin-left: 130px;
+    flex-shrink: 0;
+    /*Para que no se monten los botones uno encima de otro*/
+}
+.rigth_header-mobile {
+    display: none;
+}
+
+.search-desktop {
     align-items: center;
     border: 1px solid grey;
     border-right: none;
-    border-radius: 40px 0 0 40px;
-    /* box-shadow: inset 0 1px 2px var(--ytd-searchbox-legacy-border-shadow-color); */
-    /* caret-color: var(--yt-spec-text-primary); */
+    border-radius: 40px 40px;
     color: grey;
     padding: 0px 0px 0px 16px;
+    /*Mover el cursor de escritura --> 16px*/
     margin-left: 32px;
     flex: 1;
-    flex-basis: 0%;
-    flex-basis: 0.000000001px;
-    display: flexbox;
     display: flex;
-    flex-direction: row;
-}
-
-.search {
-    border: 1px solid grey;
-    /* background-color: grey; */
-    border-radius: 40px 40px;
-    cursor: pointer;
     height: 40px;
     width: 64px;
     margin: 0;
+    cursor: pointer;
 }
-.searchbox {
+
+.searchbox-desktop {
     width: 100%;
     display: flex;
     align-items: items;
 }
-.searchbox input {
+
+.searchbox-desktop input {
     box-sizing: border-box;
     padding: 1px 0;
     margin: 0;
     outline: none;
     background-color: transparent;
     border: none;
-    box-shadow: none;
     color: inherit;
-    font-family: Roboto,Noto,sans-serif;
+    /*Toma el color en texto de su padre*/
+    font-family: Roboto, Noto, sans-serif;
     font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    margin-left: 4px;
-    /* margin-bottom: 10px; */
     max-width: 100%;
-    outline: none;
     text-align: inherit;
     width: 100%;
 }
+
 .searchButton {
     border: 1px solid rgba(180, 180, 180, 0.332);
     background-color: var(--grey);
@@ -100,11 +99,16 @@ header {
     margin: 0;
     font-size: 25px;
 }
+
 .searchButton:hover {
     background-color: rgb(219, 219, 219);
 }
+.searchbox-mobile {
+    display: none;
+    z-index: 200;
+}
 
-.bxs-microphone{
+.micro-desktop {
     padding: 10px;
     background-color: var(--grey);
     border-radius: 100%;
@@ -112,7 +116,8 @@ header {
     margin-left: 15px;
     cursor: pointer;
 }
-.bxs-microphone:hover {
+
+.micro-desktop:hover {
     background-color: rgb(219, 219, 219);
 }
 
@@ -128,16 +133,53 @@ header {
     cursor: pointer;
     padding: 10px;
 }
+
 .bx-menu:hover {
     background-color: var(--grey);
     border-radius: 100%;
 }
 
-.bx-camera-movie{
+.bx-camera-movie {
     padding: 10px;
     cursor: pointer;
 }
+
 .bx-camera-movie:hover {
     background-color: var(--grey);
     border-radius: 100%;
+}
+
+.bxs-user-circle {
+    cursor: pointer;
+    border-radius: 100%;
+}
+
+@media (max-width: 680px) {
+    .mid_header {
+        display: none;
+    }
+    .desktop {
+        display:none
+    }
+    .rigth_header-mobile {
+        display: block;
+        margin-right: 18px;
+        display: flex;
+        align-items: center;
+        /* gap: 5px; */
+    }
+    .nav-btn {
+        cursor: pointer;
+        padding: 9px;
+        font-size: 23px;
+        border-radius: 100%;
+        align-self: center;
+    }
+    .nav-btn:hover{
+        background-color: var(--grey);
+    }
+    .bxs-user-circle {
+        margin-left: 10px;
+        font-size: 36px;
+    }
 }
