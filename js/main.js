@@ -60,7 +60,7 @@ async function fromInput2Video() {
     video_url = JSON.parse(video_url);
     video_url = (video_url.contents[0]).video.videoId;
     console.log(`CODIGO VIDEO: ${video_url}`);
-    video_url = `https://www.youtube.com/embed/${video_url}`
+    video_url = `https://www.youtube.com/embed/${video_url}?&autoplay=1`
     const video_html = document.querySelector("#videoInjected");
     video_html.setAttribute('src', video_url)
 }
