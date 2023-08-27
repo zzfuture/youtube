@@ -147,6 +147,7 @@ async function fromInput2Video() {
     let n_comments = moreInfo.stats.comments;
     let likes = moreInfo.stats.likes;
     let views = moreInfo.stats.views;
+    let title = moreInfo.title;
     let hashtag = ``;
     for (let i = 0; i < moreInfo.superTitle.length; i++){
         hashtag += moreInfo.superTitle[i];
@@ -156,8 +157,8 @@ async function fromInput2Video() {
     relatedInfo = JSON.parse(relatedInfo);
     relatedInfo = relatedInfo.contents;
 
-    let seleccion = document.querySelector("#recomendado-desktop");
-    seleccion.insertAdjacentHTML("beforeend", /*html*/`
+    let recomendado = document.querySelector("#recomendado-desktop");
+    recomendado.insertAdjacentHTML("beforeend", /*html*/`
     <div id="recomendado-container" class="recomendado-container">
         ${relatedInfo.map(value => {
             if (value.video) { // Verificar si el objeto tiene una clave "video"
@@ -181,6 +182,49 @@ async function fromInput2Video() {
         }).join('')}
     </div>`
         );
+        let descripcion = document.querySelector('#descripcion-desktop');
+        descripcion.insertAdjacentHTML("beforeend", /*html*/ `
+            <div class="title">${title}</div>
+            <div class="bellow-title">
+                <div class="bellow-title-left">
+                    <img src="${avatar}"
+                        alt="channel icon">
+                    <div class="channel-info">
+                        <div class="channel-name">${autor}</div>
+                        <div class="subs">4890 suscriptores</div>
+                    </div>
+                    <a href="#">Suscribirme</a>
+                </div>
+                <div class="bellow-title-right">
+                    <div class="like-section">
+                        <div class="likebtn-desktop">
+                            <i class='bx bxs-like like'></i>
+                            <div class="likes">${likes}</div>
+                        </div>
+                        <i class='bx bx-dislike dislikebtn-desktop'></i>
+                    </div>
+                    <div class="share-desktop"><i class='bx bx-share bx-flip-horizontal'></i>Compartir</div>
+                    <div class="guardar-desktop">
+                        <svg height="24" viewBox="0 0 24 24" width="24" focusable="false"
+                            style="pointer-events: none; display: block;">
+                            <path
+                                d="M22 13h-4v4h-2v-4h-4v-2h4V7h2v4h4v2zm-8-6H2v1h12V7zM2 12h8v-1H2v1zm0 4h8v-1H2v1z">
+                            </path>
+                        </svg>
+                        <div>Guardar</div>
+                    </div>
+                    <i class='bx bx-dots-horizontal-rounded bx-flip-horizontal dotdotdot-desktop'></i>
+                </div>
+            </div>
+            <div class="info">
+                <div class="info-top">
+                    <div class="views">${views} visualizaciones</div>
+                    <div class="fecha">${date}</div>
+                    <div class="hashtag">${hashtag}</div>
+                </div>
+                <div class="descripcion">${moreInfo.description}</div>
+            </div>
+        `);        
 }
 
 const input = document.querySelector("#searchbox-input")
@@ -189,6 +233,7 @@ input.addEventListener('keydown', function (event) {
         fromInput2Video();
     }
 });
+
 
 
 
