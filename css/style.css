@@ -392,6 +392,8 @@ iframe {
 .bellow-title-left img {
     border-radius: 100%;
     cursor: pointer;
+    height: 40px;
+    width: 40px;
 }
 .bellow-title-left a{
     margin-left: 15px;

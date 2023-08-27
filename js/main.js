@@ -50,7 +50,7 @@ let searchInput = async () => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '377b093aa1mshafe585589a6a003p19d139jsnfd6f18125c57',
+            'X-RapidAPI-Key': 'a69ce51d07msh4862aa40966ed35p114ab0jsn711f065272f1',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -70,7 +70,7 @@ let videoInfo = async (id) => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '377b093aa1mshafe585589a6a003p19d139jsnfd6f18125c57',
+            'X-RapidAPI-Key': 'a69ce51d07msh4862aa40966ed35p114ab0jsn711f065272f1',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -89,7 +89,7 @@ let related = async (id) => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '377b093aa1mshafe585589a6a003p19d139jsnfd6f18125c57',
+            'X-RapidAPI-Key': 'a69ce51d07msh4862aa40966ed35p114ab0jsn711f065272f1',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -105,12 +105,12 @@ let related = async (id) => {
 }
 
 
-let comentarios = async (id) =>{
+let comentarios = async (id) => {
     const url = `https://youtube138.p.rapidapi.com/video/comments/?id=${id}&hl=en&gl=US`;
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '377b093aa1mshafe585589a6a003p19d139jsnfd6f18125c57',
+            'X-RapidAPI-Key': 'a69ce51d07msh4862aa40966ed35p114ab0jsn711f065272f1',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -128,9 +128,10 @@ let comentarios = async (id) =>{
 async function fromInput2Video() {
     let video_info = await searchInput();
     video_info = JSON.parse(video_info);
+    console.log(video_info);
     let videoID = (video_info.contents[0]).video.videoId;
     console.log(`CODIGO VIDEO: ${videoID}`);
-    
+
     let moreInfo = await videoInfo(videoID);
     moreInfo = JSON.parse(moreInfo);
     let commentsInfo = await comentarios(videoID);
@@ -139,7 +140,7 @@ async function fromInput2Video() {
     video_url = `https://www.youtube.com/embed/${videoID}?&autoplay=1`;
     const video_html = document.querySelector("#videoInjected");
     video_html.setAttribute('src', video_url);
-    
+
     let autor = moreInfo.author.title;
     let avatar = ((video_info.contents[0]).video.author.avatar[0]).url;
     let date = (video_info.contents[0]).video.publishedTimeText;
@@ -149,20 +150,21 @@ async function fromInput2Video() {
     let views = moreInfo.stats.views;
     let title = moreInfo.title;
     let hashtag = ``;
-    for (let i = 0; i < moreInfo.superTitle.length; i++){
+    for (let i = 0; i < moreInfo.superTitle.length; i++) {
         hashtag += moreInfo.superTitle[i];
     }
-    let comments = commentsInfo.comments;
+    
     let relatedInfo = await related(videoID);
     relatedInfo = JSON.parse(relatedInfo);
     relatedInfo = relatedInfo.contents;
 
     let recomendado = document.querySelector("#recomendado-desktop");
+    recomendado.innerHTML = ''
     recomendado.insertAdjacentHTML("beforeend", /*html*/`
     <div id="recomendado-container" class="recomendado-container">
         ${relatedInfo.map(value => {
-            if (value.video) { // Verificar si el objeto tiene una clave "video"
-                return /*html*/`
+        if (value.video) { // Verificar si el objeto tiene una clave "video"
+            return /*html*/`
                 <div class="recomendado">
                     <img class="thumbnail" src="${value.video.thumbnails[0].url}" alt="thumbnail">
                     <div class="recomendado-info">
@@ -176,55 +178,84 @@ async function fromInput2Video() {
                         </div>
                     </div>
                 </div>`;
-            } else {
-                return; // Si no tiene una clave "video", retornar una cadena vacía
-            }
-        }).join('')}
+        } else {
+            return; // Si no tiene una clave "video", retornar una cadena vacía
+        }
+    }).join('')}
     </div>`
-        );
-        let descripcion = document.querySelector('#descripcion-desktop');
-        descripcion.insertAdjacentHTML("beforeend", /*html*/ `
-            <div class="title">${title}</div>
-            <div class="bellow-title">
-                <div class="bellow-title-left">
-                    <img src="${avatar}"
-                        alt="channel icon">
-                    <div class="channel-info">
-                        <div class="channel-name">${autor}</div>
-                        <div class="subs">4890 suscriptores</div>
-                    </div>
-                    <a href="#">Suscribirme</a>
+    );
+    let descripcion = document.querySelector('#descripcion-desktop');
+    descripcion.innerHTML = ''
+    descripcion.insertAdjacentHTML("beforeend", /*html*/ `
+        <div class="title">${title}</div>
+        <div class="bellow-title">
+            <div class="bellow-title-left">
+                <img src="${avatar}"
+                    alt="channel icon">
+                <div class="channel-info">
+                    <div class="channel-name">${autor}</div>
+                    <div class="subs">4890 suscriptores</div>
                 </div>
-                <div class="bellow-title-right">
-                    <div class="like-section">
-                        <div class="likebtn-desktop">
-                            <i class='bx bxs-like like'></i>
-                            <div class="likes">${likes}</div>
-                        </div>
-                        <i class='bx bx-dislike dislikebtn-desktop'></i>
-                    </div>
-                    <div class="share-desktop"><i class='bx bx-share bx-flip-horizontal'></i>Compartir</div>
-                    <div class="guardar-desktop">
-                        <svg height="24" viewBox="0 0 24 24" width="24" focusable="false"
-                            style="pointer-events: none; display: block;">
-                            <path
-                                d="M22 13h-4v4h-2v-4h-4v-2h4V7h2v4h4v2zm-8-6H2v1h12V7zM2 12h8v-1H2v1zm0 4h8v-1H2v1z">
-                            </path>
-                        </svg>
-                        <div>Guardar</div>
-                    </div>
-                    <i class='bx bx-dots-horizontal-rounded bx-flip-horizontal dotdotdot-desktop'></i>
-                </div>
+                <a href="#">Suscribirme</a>
             </div>
-            <div class="info">
-                <div class="info-top">
-                    <div class="views">${views} visualizaciones</div>
-                    <div class="fecha">${date}</div>
-                    <div class="hashtag">${hashtag}</div>
+            <div class="bellow-title-right">
+                <div class="like-section">
+                    <div class="likebtn-desktop">
+                        <i class='bx bxs-like like'></i>
+                        <div class="likes">${likes}</div>
+                    </div>
+                    <i class='bx bx-dislike dislikebtn-desktop'></i>
                 </div>
-                <div class="descripcion">${moreInfo.description}</div>
+                <div class="share-desktop"><i class='bx bx-share bx-flip-horizontal'></i>Compartir</div>
+                <div class="guardar-desktop">
+                    <svg height="24" viewBox="0 0 24 24" width="24" focusable="false"
+                        style="pointer-events: none; display: block;">
+                        <path
+                            d="M22 13h-4v4h-2v-4h-4v-2h4V7h2v4h4v2zm-8-6H2v1h12V7zM2 12h8v-1H2v1zm0 4h8v-1H2v1z">
+                        </path>
+                    </svg>
+                    <div>Guardar</div>
+                </div>
+                <i class='bx bx-dots-horizontal-rounded bx-flip-horizontal dotdotdot-desktop'></i>
             </div>
-        `);        
+        </div>
+        <div class="info">
+            <div class="info-top">
+                <div class="views">${views} visualizaciones</div>
+                <div class="fecha">${date}</div>
+                <div class="hashtag">${hashtag}</div>
+            </div>
+            <div class="descripcion">${moreInfo.description}</div>
+        </div>
+    `);
+    let cts = commentsInfo.comments;
+    console.log(cts)
+    let comentario = document.querySelector('#comentarios');
+    comentario.innerHTML = ''
+    comentario.insertAdjacentHTML('beforeend', /*html*/ `
+    <div class="comentarios">${commentsInfo.totalCommentsCount} comentarios</div>
+    <div class="comentarios-container">
+    ${cts.map(value => /*html*/`
+    <div class="comentario">
+        <img src="${((value.author.avatar)[0]).url}"
+                alt="autor-img">
+            <div class="comentario-content">
+                <div class="comentario-top">
+                    <div class="autor">${value.author.title}</div>
+                    <div class="comentario-date">${value.publishedTimeText}</div>
+                </div>
+                <div class="content">${value.content}</div>
+                <div class="comentarios-likes-container">
+                    <i class='bx bx-like like'></i>
+                    <div class="n-likes">${value.stats.votes}</div>
+                    <i class='bx bx-dislike dislike'></i>
+                    <div class="responderbtn">Responder</div>
+                </div>
+                <div class="replies"></div>
+            </div>
+    </div>
+    `).join('')}
+    </div>`);
 }
 
 const input = document.querySelector("#searchbox-input")
@@ -234,10 +265,42 @@ input.addEventListener('keydown', function (event) {
     }
 });
 
+{/* <div class="comentarios">4202978 comentarios</div>
+                    <div class="comentarios-container">
+                        <div class="comentario">
+                            <img src="https://yt3.ggpht.com/p4FCAFrFhKYog3VTmKU-YHXF0YuBhV74l4dV6o1OHk2lzIHdOHBFH6rLuMcKkgqT5hgUv6gg1A=s48-c-k-c0x00ffffff-no-rj"
+                                alt="autor-img">
+                            <div class="comentario-content">
+                                <div class="comentario-top">
+                                    <div class="autor">Armaan singh</div>
+                                    <div class="comentario-date">1 year ago</div>
+                                </div>
+                                <div class="content">2017: People came to listen song. 2021: People come to check views.
+                                </div>
+                                <div class="comentarios-likes-container">
+                                    <i class='bx bx-like like'></i>
+                                    <div class="n-likes">20000</div>
+                                    <i class='bx bx-dislike dislike'></i>
+                                    <div class="responderbtn">Responder</div>
+                                </div>
+                                <div class="replies"></div>
+                            </div>
+                        </div>
+                    </div> */}
 
-
-
-
-
-
-
+{/* <img src="${((value.author.avatar)[0]).url}"
+                alt="autor-img">
+            <div class="comentario-content">
+                <div class="comentario-top">
+                    <div class="autor">${value.author.title}</div>
+                    <div class="comentario-date">${value.publishedTimeText}</div>
+                </div>
+                <div class="content">${value.content}</div>
+                <div class="comentarios-likes-container">
+                    <i class='bx bx-like like'></i>
+                    <div class="n-likes">${value.stats.votes}</div>
+                    <i class='bx bx-dislike dislike'></i>
+                    <div class="responderbtn">Responder</div>
+                </div>
+                <div class="replies"></div>
+            </div> */}
