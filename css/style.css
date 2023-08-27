@@ -336,10 +336,10 @@ main {
 }
 
 .main-desktop{
-    width: 95vw;
     max-width: 1920px;
     display: flex;
     padding-top: 25px;
+    justify-content: space-between;
 }
 .video-comentarios {
     padding-left: 4vw;
@@ -351,11 +351,14 @@ main {
 
 }
 #video {
-    height: 35vw;
-    max-height: 675px;
+    height: 40vw;
+    max-height: 720px;
     width: 66vw;
     max-width: 1408px;
     background-color: black;
+    display: flex;
+    border-radius: 15px;
+    justify-content: center;
 }
 iframe {
     border-radius: 15px;
@@ -436,9 +439,9 @@ iframe {
     border-radius: 20px 0px 0px 20px;
     background-color: #ededed;
     padding-left: 13px;
-    padding-top: 1px;
+    padding-top: 2px;
     padding-right: 8px;
-    padding-bottom: 1px;
+    padding-bottom: 2px;
     border-right: black;
     gap: 15px;
     align-items: center;
@@ -451,6 +454,10 @@ iframe {
 }
 .likes {
     font-size: 15px;
+}
+.like-top {
+    padding: 5px;
+    border-radius: 20px;
 }
 
 .dislikebtn-desktop{
@@ -518,6 +525,9 @@ iframe {
 }
 .comentarios-container {
     margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 .comentario {
     display: flex;
@@ -560,34 +570,108 @@ iframe {
 }
 
 .like, .n-likes, .dislike, .responderbtn {
-    padding: 5px;
+    padding: 4px;
     border-radius: 20px;
+}
+.like, .dislike {
+    font-size: 20px;
 }
 
 .like:hover , .dislike:hover, .responderbtn:hover {
-    background-color: #d6d6d6;
+    background-color: #ededed;
     cursor: pointer;
 
 }
 
+/* Recomendado Desktop */
+
+.recomendado-desktop {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0px 28px;
+}
+.recomendado-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.recomendado {
+    display: flex;
+    gap: 10px;
+    width: 75%;
+    cursor: pointer;
+}
+.recomendado img {
+    border-radius: 10px;
+    border: 1.5px solid transparent;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+    width: 168px;
+    height: 94px;
+}
+.recomendado:hover  .thumbnail{
+    border: 1.8px solid #838383;
+}
+.recomendado-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.recomendado-title {
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.recomendado-channel {
+    font-size: 12px;
+    cursor: pointer;
+    color: #707070;
+    font-weight: bold;
+}
+.recomendado-little {
+    display: flex;
+    font-size: 12px;
+    color: #707070;
+}
 
 
 
 
 
+@media (max-width: 1100px) {
+    .recomendado-views {
+        display: none;
+    }
+    .recomendado-date {
+        display: none;
+    }
+    .recomendado div {
+        font-size: 1.2vw;
+    }
+    .guardar-desktop {
+        display: none;
+    }
+}
+
+
+@media (max-width: 900px) {
+    .desktop {
+        display: none
+    }
+}
 
 
 
 
 
-
-
-
-@media (max-width: 680px) {
+@media (max-width: 641px) {
     .mid_header {
         display: none;
     }
-
+    .long {
+        display: none;
+    }
     .desktop {
         display: none
     }
