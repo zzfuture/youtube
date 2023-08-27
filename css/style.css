@@ -149,7 +149,6 @@ body {
 /*? HEADER */
 
 header {
-    grid-area: header;
     height: 56px;
     padding: 0 16px;
     display: flex;
@@ -158,6 +157,9 @@ header {
     justify-content: space-between;
     font-size: 35px;
     font-weight: 200;
+    position: sticky;
+    top: 0;
+    background: white;
 }
 
 .mobile {
@@ -341,6 +343,12 @@ main {
 }
 .video-comentarios {
     padding-left: 4vw;
+    width: 66vw;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1408px;
+
 }
 #video {
     height: 35vw;
@@ -356,7 +364,15 @@ iframe {
 .recomendado-desktop {
     width: 100%;
 }
-
+#descripcion-desktop {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.title {
+    font-size: 20px;
+    font-weight: 600;
+}
 .bellow-title {
     display: flex;
     height: 45px;
@@ -420,11 +436,12 @@ iframe {
     border-radius: 20px 0px 0px 20px;
     background-color: #ededed;
     padding-left: 13px;
-    padding-top: 6px;
+    padding-top: 1px;
     padding-right: 8px;
-    padding-bottom: 6px;
+    padding-bottom: 1px;
     border-right: black;
     gap: 15px;
+    align-items: center;
 }
 /* .like {
     margin-top: 1px;
@@ -432,7 +449,7 @@ iframe {
 .likebtn-desktop:hover {
     background-color: #c7c7c770;
 }
-.views {
+.likes {
     font-size: 15px;
 }
 
@@ -487,7 +504,70 @@ iframe {
 .dotdotdot-desktop:hover {
     background-color: #c7c7c770;
 }
-#descripcion-comentarios {
+
+.info {
+    padding: 16px;
+    font-size: 15px;
+    background-color: #ededed;
+    border-radius: 10px;
+}
+
+.info-top {
+    display: flex;
+    gap: 10px;
+}
+.comentarios-container {
+    margin-top: 25px;
+}
+.comentario {
+    display: flex;
+    gap: 20px;
+}
+
+.comentario img {
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+.comentario-top {
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+    align-items: center;
+}
+.autor {
+    font-weight: 600;
+}
+.comentario-date {
+    font-size: 15px;
+    color: #707070;
+    font-weight: 600;
+}
+.comentario-date:hover {
+    color: #303030;
+}
+.comentario-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.comentarios-likes-container {
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+}
+
+.like, .n-likes, .dislike, .responderbtn {
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.like:hover , .dislike:hover, .responderbtn:hover {
+    background-color: #d6d6d6;
+    cursor: pointer;
+
 }
 
 

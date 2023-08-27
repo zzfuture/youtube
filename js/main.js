@@ -5,12 +5,14 @@ function sidebarOpen() {
     const background = document.querySelector("#sidebar-background");
     const body = document.querySelector("body");
     const menuHeader = document.querySelector(".menu-header");
+    const main = document.querySelector("main");
 
     sidebarContainer.style = 'z-index: 300';
     sidebar.style = 'left: 0px';
     background.style = 'background-color: rgba(0, 0, 0, 0.400); z-index: 400;';
     body.style = 'overflow-y: hidden; right: 17px'
     menuHeader.style = "margin-left: 17px;";
+    main.style = "margin-left: 17px;";
 }
 
 
@@ -24,12 +26,14 @@ function sidebarClose() {
     const background = document.querySelector("#sidebar-background");
     const body = document.querySelector("body");
     const menuHeader = document.querySelector(".menu-header");
+    const main = document.querySelector("main");
 
     sidebarContainer.style = 'z-index: -1';
     sidebar.style = 'left: -400px';
     background.style = 'z-index: 0; visibility: hidden';
     body.style = 'overflow-y: visible;'
     menuHeader.style = "margin-left: 0px;";
+    main.style = "margin-left: 0px;";
 }
 
 const menuClose = document.querySelector("#menu-close");
@@ -77,5 +81,3 @@ input.addEventListener('keydown', function(event) {
         fromInput2Video();
     }
 });
-
-
