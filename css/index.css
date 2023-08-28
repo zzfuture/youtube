@@ -1,0 +1,358 @@
+:root {
+    --grey: #ebebeb;
+}
+
+html {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    overflow-x: hidden !important;
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", "Arial", sans-serif;
+    position: relative;
+}
+
+.sidebar-container {
+    position: fixed;
+    display: grid;
+    z-index: -1;
+    grid-template-columns: 100vw;
+    grid-template-rows: auto;
+    grid-template-areas:
+        'header'
+    ;
+}
+
+.sidebar,
+.sidebar-main {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    background-color: white;
+    height: 100vh;
+    font-size: 15px;
+}
+
+.sidebar {
+    padding-top: 16px;
+    grid-area: header;
+    position: fixed;
+    z-index: 500;
+    transition: 0.3s ease;
+    left: -400px;
+}
+
+.sidebar-box div {
+    width: 216px;
+}
+
+.sidebar-box {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    border-bottom: 0.009px solid rgba(132, 132, 132, 0.254);
+    width: 90%;
+    padding-top: 20px;
+}
+
+.sidebar-main {
+    position: relative;
+    overflow-y: hidden;
+    gap: 0px;
+}
+
+.sidebar-main a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.sidebar-main div {
+    width: 200px;
+}
+
+.sidebar-main a:hover {
+    background-color: #cacaca49;
+    position: relative;
+    border-radius: 13px;
+}
+
+.sidebar-main:hover {
+    overflow-y: scroll;
+}
+
+.sidebar-main::-webkit-scrollbar {
+    width: 10px;
+}
+
+.sidebar-main::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar-main::-webkit-scrollbar-thumb {
+    background: #7e7e7e;
+    width: 10px;
+}
+
+.sidebar-subtitle {
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+.side6cont {
+    display: flex;
+    flex-direction: row;
+    padding-left: 15px;
+}
+
+.side6cont a {
+    font-size: 12px;
+    padding: 2px;
+    color: rgb(90, 90, 90);
+    font-weight: bold;
+}
+
+.side6cont a:hover {
+    background-color: transparent;
+}
+
+.sidebar-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    padding-left: 20px;
+}
+
+
+#sidebar-background {
+    background-color: transparent;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    z-index: 0;
+    grid-area: header;
+}
+
+/*? HEADER */
+
+header {
+    height: 56px;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 35px;
+    font-weight: 200;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 150;
+}
+
+.mobile {
+    display: none;
+}
+
+.left_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.mid_header-desktop {
+    flex: 0 1 700px;
+    min-width: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 130px;
+}
+
+.right_header-desktop {
+    margin-left: 130px;
+    flex-shrink: 0;
+    padding-right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    /*Para que no se monten los botones uno encima de otro*/
+}
+
+.right_header-mobile {
+    display: none;
+}
+
+.search-desktop {
+    align-items: center;
+    border: 1px solid grey;
+    border-right: none;
+    border-radius: 40px 40px;
+    color: grey;
+    padding: 0px 0px 0px 16px;
+    /*Mover el cursor de escritura --> 16px*/
+    margin-left: 32px;
+    flex: 1;
+    display: flex;
+    height: 40px;
+    width: 64px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.searchbox-desktop {
+    width: 100%;
+    display: flex;
+    align-items: items;
+}
+
+.searchbox-desktop input {
+    box-sizing: border-box;
+    padding: 1px 0;
+    margin: 0;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    /*Toma el color en texto de su padre*/
+    font-family: Roboto, Noto, sans-serif;
+    font-size: 16px;
+    max-width: 100%;
+    text-align: inherit;
+    width: 100%;
+}
+
+.searchButton {
+    border: 1px solid rgba(180, 180, 180, 0.332);
+    background-color: var(--grey);
+    border-radius: 0 40px 40px 0;
+    cursor: pointer;
+    height: 40px;
+    width: 64px;
+    margin: 0;
+    font-size: 25px;
+}
+
+.searchButton:hover {
+    background-color: rgb(219, 219, 219);
+}
+
+.searchbox-mobile {
+    display: none;
+    z-index: 200;
+}
+
+.micro-desktop {
+    padding: 10px;
+    background-color: var(--grey);
+    border-radius: 100%;
+    font-size: 25px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.micro-desktop:hover {
+    background-color: rgb(219, 219, 219);
+}
+
+.logoyt {
+    height: 20px;
+    width: 90px;
+    cursor: pointer;
+    margin-bottom: 1px;
+    margin-left: 15px;
+}
+
+.logoyt-sidebar {
+    height: 20px;
+    width: 90px;
+    cursor: pointer;
+    margin-top: 4px;
+    margin-left: 25px;
+}
+
+.menu-header {
+    font-size: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+    padding: 8px;
+
+}
+
+.menu-header:hover {
+    background-color: var(--grey);
+    border-radius: 100%;
+}
+
+#menu-close {
+    cursor: pointer;
+}
+
+.bx-camera-movie {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.bx-camera-movie:hover {
+    background-color: var(--grey);
+    border-radius: 100%;
+}
+
+.camera-header-desktop {
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 100%;
+}
+
+.camera-header-desktop:hover {
+    background-color: var(--grey);
+}
+
+.bxs-user-circle {
+    cursor: pointer;
+    border-radius: 100%;
+}
+.sidebar {
+    transition: 0s;
+    left: 0px;
+}
+.sidebar-small {
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 39px;
+    height: 100vh;
+    padding-top: 17px;
+    position: sticky;
+    top: 0;
+    overflow-y: hidden;
+}
+.sidebar-small-btn a{
+    font-size: 11.4px ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sidebar-small-btn a svg {
+    height: 25px;
+}
+.sidebar-hidden {
+    display: none;
+}
+.jose {
+    display: flex;
+}

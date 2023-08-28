@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/index.css">
-    <script src="js/main.js" defer></script>
-    <script src="js/index.js" defer></script>
     <title>Youtube</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/player.css">
+    <script src="../js/main.js"></script>
+    <script src="../js/player.js" defer></script>
+
 </head>
 
 <body>
@@ -36,6 +37,7 @@
                     <path d="M21 6H3V5h18v1zm0 5H3v1h18v-1zm0 6H3v1h18v-1z"></path>
                 </svg></div>
             <a href="index.html"><img class="logoyt" src="../img/logo-yt.png" alt="logo-yt"></a>
+
         </div>
         <div class="mid_header-desktop long">
             <div class="search-desktop long">
@@ -66,12 +68,38 @@
                 class='bx bx-camera-movie nav-btn'></i><i class='bx bxs-user-circle'></i>
         </div>
     </header>
-    <div class="jose">
-        <section id="sidebar-small" class="sidebar-small sidebar-hidden"></section>
-        <main>
-        </main>
-    </div>
-    
-</body>
+    <main>
+        <div class="main-desktop desktop">
+            <div class="video-comentarios">
+                <div id="video">
+                    <iframe id="videoInjected" width="100%" height="100%" src="" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="descripcion-desktop desktop" id="descripcion-desktop">
+                </div>
+                <div class="comentarios-desktop desktop" id="comentarios">
+                </div>
+            </div>
+            <div id="recomendado-desktop" class="recomendado-desktop desktop">
+            </div>
+        </div>
+        
 
+        </div>
+        </div>
+        <div class="main_mobile mobile">
+            <div id="video">
+                <iframe id="videoInjected" width="100%" height="100%" src="" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div id="descripcion"></div>
+            <div id="recomendado"></div>
+            <div id="comentarios"></div>
+        </div>
+    </main>
+</body>
 </html>
