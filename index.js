@@ -54,8 +54,10 @@
             console.log('xd')
             
         } else {
+            const sidebarsmall = document.querySelector("#sidebar-small");
             sidebar.style.left = '0px';
             sidebar.style.transition = '0s';
+
         }
     }
     adjustSidebar();
@@ -76,7 +78,7 @@ function sidebarOpen() {
         sidebarContainer.style.zIndex = '300';
         sidebar.style.left = '0px';
         background.style.backgroundColor = 'rgba(0, 0, 0, 0.400)';
-        background.style.visibility = 'visible';
+        background.style.display = 'block';
         background.style.zIndex = '400';
         body.style.overflowY = 'hidden';
         body.style.marginRight = '17px';
@@ -106,7 +108,7 @@ function sidebarClose() {
     sidebarContainer.style.zIndex = '-1';
     sidebar.style.left = '-400px';
     background.style.zIndex = '0';
-    background.style.visibility = 'hidden';
+    background.style.display = 'none';
     body.style.overflowY = 'visible';
     body.style.marginRight = '0';
     menuHeader.style.marginLeft = '0';
