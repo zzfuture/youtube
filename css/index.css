@@ -38,7 +38,6 @@ main {
 .sidebar-container {
     position: fixed;
     display: grid;
-    z-index: -1;
     grid-area: sidebar;
 }
 
