@@ -1,3 +1,42 @@
+(async ( ) => {
+    let sidebar = document.querySelector("#sidebar-small");
+    let peticion = await fetch("data.json");
+    let res = await peticion.json();
+    sidebarInfo = res.sidebarsmall;
+    console.log(sidebarInfo);
+    sidebar.insertAdjacentHTML('beforeend', /*html*/`
+        ${(sidebarInfo).map(value => /*html*/ `
+            <div class="sidebar-small-btn">
+                <a href="#">
+                    ${value.svg}
+                    ${value.span}
+                </a>
+            </div>
+        `).join('')}
+    </div>`
+    );
+    sidebar = document.querySelector("#sidebar-main");
+    console.log(sidebarInfo);
+    sidebarInfo = res.sidebar;
+    for (let i = 1; i < 6; i++) {
+        if (i !== 3) {
+            sidebar.insertAdjacentHTML('beforeend', /*html*/`
+                <div class="side${i} sidebar-box">
+                    ${sidebarInfo[0][`side${i}`].map(value => /*html*/ `
+                        <div>
+                            <a href="#">
+                                ${value.svg}
+                                ${value.span}
+                            </a>
+                        </div>
+                    `).join('')}
+                </div>`
+            );
+        } else {
+            sidebar.insertAdjacentHTML('beforeend', /*html*/`${sidebarInfo[0].side3.html}`);
+        }
+    }
+}) ( );
 // FUNCION ABRIR SIDEBAR
 function sidebarOpen() {
     const sidebarContainer = document.querySelector("#sidebar-container");
@@ -42,15 +81,17 @@ menuClose.addEventListener("click", sidebarClose);
 clickBackground.addEventListener("click", sidebarClose);
 
 let searchInput = async () => {
-    const input = document.querySelector("#searchbox-input").value;
+    // const input = document.querySelector("#searchbox-input").value;
     // console.log(input);
-
+    const input = 'imgoodslowed'
+    // const input = urlActual.replace(substringToRemove, "");
+    console.log(input)
     const url = `https://youtube138.p.rapidapi.com/search/?q=${input}&hl=en&gl=US`;
     // console.log(url);
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'a69ce51d07msh4862aa40966ed35p114ab0jsn711f065272f1',
+            'X-RapidAPI-Key': 'e36be011a1msh7a1ecc6dda33540p1e8aaajsn5c1baa9a358f',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -70,7 +111,7 @@ let videoInfo = async (id) => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'a69ce51d07msh4862aa40966ed35p114ab0jsn711f065272f1',
+            'X-RapidAPI-Key': 'e36be011a1msh7a1ecc6dda33540p1e8aaajsn5c1baa9a358f',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -89,7 +130,7 @@ let related = async (id) => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'a69ce51d07msh4862aa40966ed35p114ab0jsn711f065272f1',
+            'X-RapidAPI-Key': 'e36be011a1msh7a1ecc6dda33540p1e8aaajsn5c1baa9a358f',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -110,7 +151,7 @@ let comentarios = async (id) => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'a69ce51d07msh4862aa40966ed35p114ab0jsn711f065272f1',
+            'X-RapidAPI-Key': 'e36be011a1msh7a1ecc6dda33540p1e8aaajsn5c1baa9a358f',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -129,9 +170,16 @@ async function fromInput2Video() {
     let video_info = await searchInput();
     video_info = JSON.parse(video_info);
     console.log(video_info);
-    let videoID = (video_info.contents[0]).video.videoId;
-    console.log(`CODIGO VIDEO: ${videoID}`);
+    const urlActual = window.location.href;
+    const urlString = urlActual;
+    let videoID = urlString.split("=");
 
+    videoID = videoID[1];
+    console.log(videoID)
+    console.log(typeof(videoID))
+    // videoID = parseInt(videoID)
+    // let videoID = (video_info.contents[0]).video.videoId;
+    console.log(`CODIGO VIDEO: ${videoID}`);
     let moreInfo = await videoInfo(videoID);
     moreInfo = JSON.parse(moreInfo);
     let commentsInfo = await comentarios(videoID);
@@ -257,10 +305,12 @@ async function fromInput2Video() {
     `).join('')}
     </div>`);
 }
-
+fromInput2Video();
 const input = document.querySelector("#searchbox-input")
 input.addEventListener('keydown', function (event) {
     if (event.key === 'Enter' && document.activeElement === input) {
         fromInput2Video();
     }
 });
+
+// const urlActual = window.location.href;
