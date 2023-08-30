@@ -18,6 +18,12 @@ body {
     margin: 0;
     font-family: "Roboto", "Arial", sans-serif;
     position: relative;
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 56px auto;
+    grid-template-areas: 
+    'header'
+    'main';
 }
 
 .sidebar-container {
@@ -160,6 +166,7 @@ header {
     position: sticky;
     top: 0;
     background: white;
+    grid-area: header;
 }
 
 .mobile {
@@ -355,7 +362,6 @@ main {
     max-height: 720px;
     width: 66vw;
     max-width: 1408px;
-    background-color: black;
     display: flex;
     border-radius: 15px;
     justify-content: center;
@@ -590,6 +596,7 @@ iframe {
 .recomendado-desktop {
     display: flex;
     flex-direction: column;
+    grid-area: recomendado;
     gap: 10px;
     padding: 0px 28px;
 }
@@ -638,7 +645,50 @@ iframe {
 }
 
 
+.des {
+    background-color: rgb(244, 244, 244);
+    grid-area: header;
+    top: 52px;
+    position: sticky;
+    margin-left: 302px;
+    height: fit-content;
+    width: fit-content;
+    z-index: 500;
+    border-radius: 10px;
+    display: none;
+    overflow: auto;
+    overflow-x: hidden;
+    height: 400px;
+}
+ul {
+    list-style: none;
+    padding-left: 0px;
+    width: 700px;
+    z-index: 500;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+    overflow-x: hidden;
+}
+ul a {
+    width: 90%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: 0.2s;
+    height: max-content;
+    padding: 10px 15px;
+}
+ul a:hover {
+    background-color: #7e7e7e22;
 
+}
+.show {
+    display: block;
+}
 
 
 @media (max-width: 1100px) {
@@ -657,9 +707,9 @@ iframe {
 }
 
 
-@media (max-width: 900px) {
-    .desktop {
-        display: none
+@media (max-width: 923px) {
+    .share-desktop, .dotdotdot-desktop {
+        display: none;
     }
 }
 
@@ -667,21 +717,70 @@ iframe {
 
 
 
-@media (max-width: 641px) {
+@media (max-width: 725px) {
     .mid_header {
         display: none;
     }
     .long {
         display: none;
     }
-    .desktop {
+    /* .desktop {
         display: none
+    } */
+    body {
+        display: grid;
+        grid-template-columns: 100vw;
+        grid-template-rows: 56px auto auto auto;
+        grid-template-areas: 
+        'header' 
+        'main';
     }
-
     .mobile {
         display: block;
     }
-
+    main {
+        width: 100vw;
+        grid-area: main;
+        display: grid;
+        grid-template-columns: 100vw;
+        grid-template-rows: auto auto auto;
+        grid-template-areas: 
+        'video' 
+        'recomendados'
+        'comentarios';
+        padding: 0px 10px;
+    }
+    .main-desktop {
+        width: 94%;
+        display: block;
+    }
+    iframe {
+        width: 85vw;
+        height: 50vw;
+    }
+    .recomendado-desktop {
+        padding: 0px;
+        grid-area: recomendados;
+    }
+    #video {
+        width: 100%;
+        grid-area: video;
+    }
+    #comentarios {
+        grid-area: comentarios;
+    }
+    #descripcion-desktop {
+        margin-top: 70px;
+    }
+    .bellow-title-right{
+        flex-wrap: wrap;
+    }
+    .video-comentarios {
+        padding-left: 0vw;
+        width: 100%;
+        grid-area: none;
+        /* display: block; */
+    }
     .right_header-mobile {
         display: block;
         margin-right: 18px;
@@ -706,19 +805,14 @@ iframe {
         margin-left: 10px;
         font-size: 36px;
     }
+    .like-section {
+        width: 128px;
+    }
+    .likebtn-desktop {
+        width: 38%;
+    }
+    .recomendado div {
+        font-size: 18px;
+    }
 
 }
-
-
-/* 
-
-.sidebar {
-    grid-area: header;
-    z-index: 600;
-    position: absolute;
-    left: 0px;
-    transition: 0.5s ease;
-}
-
-    
-*/

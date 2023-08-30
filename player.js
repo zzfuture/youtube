@@ -1,23 +1,8 @@
 (async ( ) => {
-    let sidebar = document.querySelector("#sidebar-small");
     let peticion = await fetch("data.json");
     let res = await peticion.json();
-    sidebarInfo = res.sidebarsmall;
-    console.log(sidebarInfo);
-    sidebar.insertAdjacentHTML('beforeend', /*html*/`
-        ${(sidebarInfo).map(value => /*html*/ `
-            <div class="sidebar-small-btn">
-                <a href="#">
-                    ${value.svg}
-                    ${value.span}
-                </a>
-            </div>
-        `).join('')}
-    </div>`
-    );
     sidebar = document.querySelector("#sidebar-main");
-    console.log(sidebarInfo);
-    sidebarInfo = res.sidebar;
+    let sidebarInfo = res.sidebar;
     for (let i = 1; i < 6; i++) {
         if (i !== 3) {
             sidebar.insertAdjacentHTML('beforeend', /*html*/`
@@ -91,7 +76,7 @@ let searchInput = async () => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'e36be011a1msh7a1ecc6dda33540p1e8aaajsn5c1baa9a358f',
+            'X-RapidAPI-Key': '751300b48cmsh805be86dec5e4eap14f5e4jsn6a76e6466b9e',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -111,7 +96,7 @@ let videoInfo = async (id) => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'e36be011a1msh7a1ecc6dda33540p1e8aaajsn5c1baa9a358f',
+            'X-RapidAPI-Key': '751300b48cmsh805be86dec5e4eap14f5e4jsn6a76e6466b9e',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -126,22 +111,21 @@ let videoInfo = async (id) => {
 }
 
 let related = async (id) => {
-    const url = `https://youtube138.p.rapidapi.com/video/related-contents/?id=${id}&hl=en&gl=US`;
+    const url = 'https://youtube138.p.rapidapi.com/channel/videos/?id=UC8fkwsjcI_MhralEX1g4OBw&hl=en&gl=US';
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'e36be011a1msh7a1ecc6dda33540p1e8aaajsn5c1baa9a358f',
+            'X-RapidAPI-Key': '751300b48cmsh805be86dec5e4eap14f5e4jsn6a76e6466b9e',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
-
+    
     try {
         const response = await fetch(url, options);
         const result = await response.text();
-        return result;
+        return(result);
     } catch (error) {
         console.error(error);
-        return null;
     }
 }
 
@@ -151,7 +135,7 @@ let comentarios = async (id) => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'e36be011a1msh7a1ecc6dda33540p1e8aaajsn5c1baa9a358f',
+            'X-RapidAPI-Key': '751300b48cmsh805be86dec5e4eap14f5e4jsn6a76e6466b9e',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -190,7 +174,7 @@ async function fromInput2Video() {
     video_html.setAttribute('src', video_url);
 
     let autor = moreInfo.author.title;
-    let avatar = ((video_info.contents[0]).video.author.avatar[0]).url;
+    let avatar = "img/channel-logo.jpg";
     let date = (video_info.contents[0]).video.publishedTimeText;
     let description = moreInfo.description;
     let n_comments = moreInfo.stats.comments;
@@ -213,19 +197,19 @@ async function fromInput2Video() {
         ${relatedInfo.map(value => {
         if (value.video) { // Verificar si el objeto tiene una clave "video"
             return /*html*/`
-                <div class="recomendado">
+                <a href="player.html?value=${value.video.videoId}" class="recomendado">
                     <img class="thumbnail" src="${value.video.thumbnails[0].url}" alt="thumbnail">
                     <div class="recomendado-info">
                         <div class="recomendado-title">
                             ${value.video.title}
                         </div>
-                        <div class="recomendado-channel">${value.video.author.title}</div>
+                        <div class="recomendado-channel">CreativeCode</div>
                         <div class="recomendado-little">
                             <div class="recomendado-views">${value.video.stats.views} visualizaciones</div>
                             <div class="recomendado-date">${value.video.publishedTimeText}</div>
                         </div>
                     </div>
-                </div>`;
+                </a>`;
         } else {
             return; // Si no tiene una clave "video", retornar una cadena vacía
         }
@@ -242,7 +226,7 @@ async function fromInput2Video() {
                     alt="channel icon">
                 <div class="channel-info">
                     <div class="channel-name">${autor}</div>
-                    <div class="subs">4890 suscriptores</div>
+                    <div class="subs">495 suscriptores</div>
                 </div>
                 <a href="#">Suscribirme</a>
             </div>
@@ -306,11 +290,112 @@ async function fromInput2Video() {
     </div>`);
 }
 fromInput2Video();
-const input = document.querySelector("#searchbox-input")
-input.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter' && document.activeElement === input) {
-        fromInput2Video();
+
+
+let closeTimeout;
+
+function desplegarMenu() {
+    clearTimeout(closeTimeout); // Cancelar cualquier cierre programado
+    const desplegable = document.querySelector('#des');
+    console.log('A');
+    desplegable.style.display = 'block';
+}
+
+function cerrarMenu() {
+    const desplegable = document.querySelector('#des');
+    closeTimeout = setTimeout(function () {
+        desplegable.style.display = 'none';
+    }, 100); // Retrasar el cierre por 100 milisegundos para capturar clics en el desplegable
+}
+
+const inp = document.querySelector('#searchbox-input');
+inp.addEventListener('focus', desplegarMenu);
+inp.addEventListener('blur', cerrarMenu);
+
+function widthDesplegable() {
+    const desplegable = document.querySelector('#des');
+    const body = document.querySelector('body');
+    const ul = document.querySelector('ul');
+    let elementStyleBody = window.getComputedStyle(body);
+    let widthActual = elementStyleBody.getPropertyValue('width');
+    width = widthActual.replace('px', '');
+    width = parseInt(width);
+    if (window.innerWidth > 1256) {
+        desplegable.style.marginLeft = `${300 + ((width - 1256) / 2)}px`;
+        // console.log(desplegable.style.marginLeft)
+    }
+    else {
+        desplegable.style.marginLeft = '302px'
+    }
+    if (window.innerWidth < 1265) {
+        ul.style.width = `${700 - ((1256 - width))}px`;
+        // console.log(ul.style.width)
+    }
+}
+window.addEventListener('resize', widthDesplegable);
+widthDesplegable();
+
+let searchInChannel = async () => {
+    const input = document.querySelector("#searchbox-input").value;
+    const url = `https://youtube138.p.rapidapi.com/channel/search/?id=UC8fkwsjcI_MhralEX1g4OBw&q=${input}&hl=en&gl=US`;
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '751300b48cmsh805be86dec5e4eap14f5e4jsn6a76e6466b9e',
+            'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
+        }
+    };
+
+    try {
+        const response = await fetch(url, options);
+        const result = await response.text();
+        return(result);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+(async()=> {
+    const input = document.querySelector('#searchbox-input');
+    let results;
+    input.addEventListener('input',async function () {
+        // const newInput = input.value;
+        let peticion = await searchInChannel();
+        let desplegable = document.querySelector("#des");
+        let res = await JSON.parse(peticion);
+        let content = res.contents;
+        // console.log(content);
+        desplegable.innerHTML = '';
+        desplegable.insertAdjacentHTML("beforeend", /*html*/`
+        <ul>
+            ${content.map(value => {
+            if (value.video) { // Verificar si el objeto tiene una clave "video"
+                return /*html*/`
+                    <a href="player.html?value=${value.video.videoId}">${value.video.title}</a>
+                    `;
+            } else {
+                return; // Si no tiene una clave "video", retornar una cadena vacía
+            }
+        }).join('')}
+        </ul>`
+        );
+    });
+    console.log(results)
+})();
+
+let searchbox = document.querySelector("#searchbox-input");
+
+searchbox.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter' && document.activeElement === searchbox) {
+        let inputValue = document.querySelector("#videos-container .v");
+        inputValue = inputValue.getAttribute('href');
+        window.location.href = inputValue;
     }
 });
-
-// const urlActual = window.location.href;
+let lupa = document.querySelector("#searchbtn")
+lupa.addEventListener('click', function () {
+        let inputValue = document.querySelector("#videos-container .v");
+        inputValue = inputValue.getAttribute('href');
+        window.location.href = inputValue;
+});

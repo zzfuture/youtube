@@ -385,6 +385,16 @@ header {
     height: 9vw;
     border-radius: 10px;
 }
+.video-info-container {
+    display: flex;
+    gap: 20px;
+    padding-top: 10px;
+}
+.channel-logo-container img {
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+}
 .movthumbnail {
     display: none;
 }
@@ -403,10 +413,22 @@ header {
     width: 100%;
     height: 100%;
     border: 1.5px;
+    /* transition: 0.1s; */
 }
 
 .movthumbnail {
     display: none;
+}
+.video-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+.video-channel, .video-little {
+    color: #555555;
+}
+.video-little {
+    display: flex;
+    gap: 10px;
 }
 
 a:hover .thumbnail {
@@ -416,8 +438,63 @@ a:hover .thumbnail {
 a:hover .movthumbnail {
     display: block;
 }
+.search-general {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.eee {
+    flex: 0 1 700px;
+    min-width: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 130px;
+}
+.des {
+    background-color: rgb(244, 244, 244);
+    grid-area: header;
+    top: 52px;
+    position: sticky;
+    margin-left: 302px;
+    height: fit-content;
+    width: fit-content;
+    z-index: 500;
+    border-radius: 10px;
+    display: none;
+    overflow: auto;
+    overflow-x: hidden;
+    height: 400px;
+}
+ul {
+    list-style: none;
+    padding-left: 0px;
+    width: 700px;
+    z-index: 500;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+    overflow-x: hidden;
+}
+ul a {
+    width: 90%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: 0.2s;
+    height: max-content;
+    padding: 10px 15px;
+}
+ul a:hover {
+    background-color: #7e7e7e22;
 
-
+}
+.show {
+    display: block;
+}
 @media (max-width: 1750px) {
     .videos-container{
         grid-template-columns: repeat(4, 1fr);
@@ -425,6 +502,11 @@ a:hover .movthumbnail {
     .videos-container img {
         width: 20vw;
         height: 11.5vw;
+    }
+    .channel-logo-container img {
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
     }
 }
 
@@ -436,6 +518,11 @@ a:hover .movthumbnail {
         width: 24vw;
         height: 14vw;     
     }
+    .channel-logo-container img {
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+    }
 }
 @media (max-width: 1275px) {
     .videos-container{
@@ -445,9 +532,15 @@ a:hover .movthumbnail {
         width: 40vw;
         height: 23vw;   
     }
+    .channel-logo-container img {
+        width: 45px;
+        height: 45px;
+        border-radius: 100%;
+    }
     body {
         grid-template-columns: 100px calc(100vw - 100px);
     }
+
 }
 @media (max-width:1272px){
     .sidebar-small {
@@ -465,6 +558,11 @@ a:hover .movthumbnail {
     }
     body {
         grid-template-columns: 80px calc(100vw - 80px);
+    }
+    .channel-logo-container img {
+        width: 45px;
+        height: 45px;
+        border-radius: 100%;
     }
 }
 
