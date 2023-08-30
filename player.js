@@ -1,3 +1,4 @@
+
 (async ( ) => {
     let peticion = await fetch("data.json");
     let res = await peticion.json();
@@ -76,7 +77,7 @@ let searchInput = async () => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '751300b48cmsh805be86dec5e4eap14f5e4jsn6a76e6466b9e',
+            'X-RapidAPI-Key': 'f277a360edmshb5ff7eaa9ddad15p1761bajsn60929e8ae4c7',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -96,7 +97,7 @@ let videoInfo = async (id) => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '751300b48cmsh805be86dec5e4eap14f5e4jsn6a76e6466b9e',
+            'X-RapidAPI-Key': 'f277a360edmshb5ff7eaa9ddad15p1761bajsn60929e8ae4c7',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -115,7 +116,7 @@ let related = async (id) => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '751300b48cmsh805be86dec5e4eap14f5e4jsn6a76e6466b9e',
+            'X-RapidAPI-Key': 'f277a360edmshb5ff7eaa9ddad15p1761bajsn60929e8ae4c7',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -135,7 +136,7 @@ let comentarios = async (id) => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '751300b48cmsh805be86dec5e4eap14f5e4jsn6a76e6466b9e',
+            'X-RapidAPI-Key': 'f277a360edmshb5ff7eaa9ddad15p1761bajsn60929e8ae4c7',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -341,7 +342,7 @@ let searchInChannel = async () => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '751300b48cmsh805be86dec5e4eap14f5e4jsn6a76e6466b9e',
+            'X-RapidAPI-Key': 'f277a360edmshb5ff7eaa9ddad15p1761bajsn60929e8ae4c7',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -372,7 +373,7 @@ let searchInChannel = async () => {
             ${content.map(value => {
             if (value.video) { // Verificar si el objeto tiene una clave "video"
                 return /*html*/`
-                    <a href="player.html?value=${value.video.videoId}">${value.video.title}</a>
+                    <a class="v" href="player.html?value=${value.video.videoId}">${value.video.title}</a>
                     `;
             } else {
                 return; // Si no tiene una clave "video", retornar una cadena vacía
@@ -383,19 +384,19 @@ let searchInChannel = async () => {
     });
     console.log(results)
 })();
-
 let searchbox = document.querySelector("#searchbox-input");
 
 searchbox.addEventListener('keydown', function (event) {
     if (event.key === 'Enter' && document.activeElement === searchbox) {
-        let inputValue = document.querySelector("#videos-container .v");
+        let inputValue = document.querySelector(".v");
         inputValue = inputValue.getAttribute('href');
+        console.log(inputValue)
         window.location.href = inputValue;
     }
 });
 let lupa = document.querySelector("#searchbtn")
 lupa.addEventListener('click', function () {
-        let inputValue = document.querySelector("#videos-container .v");
+        let inputValue = document.querySelector(".v");
         inputValue = inputValue.getAttribute('href');
         window.location.href = inputValue;
 });

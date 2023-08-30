@@ -140,7 +140,7 @@ let videosCanal = async()=>{
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '751300b48cmsh805be86dec5e4eap14f5e4jsn6a76e6466b9e',
+            'X-RapidAPI-Key': 'f277a360edmshb5ff7eaa9ddad15p1761bajsn60929e8ae4c7',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
@@ -265,7 +265,7 @@ let searchInChannel = async () => {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '751300b48cmsh805be86dec5e4eap14f5e4jsn6a76e6466b9e',
+            'X-RapidAPI-Key': 'f277a360edmshb5ff7eaa9ddad15p1761bajsn60929e8ae4c7',
             'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
         }
     };
